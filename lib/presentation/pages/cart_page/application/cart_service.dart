@@ -40,9 +40,9 @@ class CartService {
   }
 
   /// removes an item from the local cart
-  Future<void> removeItemById(String productId) async {
+  Future<void> removeItemById(String foodID) async {
     final cart = await _fetchCart();
-    final updated = cart.removeItemById(productId);
+    final updated = cart.removeItemById(foodID);
     await _setCart(updated);
     print('called removeItemById in SERVICE');
   }

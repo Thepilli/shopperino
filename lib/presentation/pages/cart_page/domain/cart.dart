@@ -7,9 +7,6 @@ import 'package:shopperino/presentation/pages/cart_page/domain/item.dart';
 class Cart {
   const Cart([this.items = const {}]);
 
-  /// All the items in the shopping cart, where:
-  /// - key: product ID
-  /// - value: quantity
   final Map<String, int> items;
 
   Map<String, dynamic> toMap() {
