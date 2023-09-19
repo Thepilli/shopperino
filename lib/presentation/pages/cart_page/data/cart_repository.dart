@@ -1,19 +1,20 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopperino/presentation/pages/cart_page/domain/cart.dart';
-import 'package:shopperino/shared/util/in_memory_store.dart';
 
 part 'cart_repository.g.dart';
 
 /// API for reading, watching and writing local cart data (guest user)
-class CartRepository {
-  final _cart = InMemoryStore<Cart>(const Cart());
+abstract class CartRepository {
+  Cart userCart = const Cart({}); // Initialize cart here
 
-  Future<Cart> fetchCart() => Future.value(_cart.value);
+  Cart fetchCart() {
+    return userCart;
+  }
 
-  Stream<Cart> watchCart() => _cart.stream;
+  Stream<Cart> watchCart();
 
   Future<void> setCart(Cart cart) async {
-    _cart.value = cart;
+    userCart = cart;
   }
 }
 

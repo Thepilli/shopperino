@@ -8,6 +8,7 @@ import 'package:shopperino/app/app_colors.dart';
 import 'package:shopperino/app/app_constants.dart';
 import 'package:shopperino/data/models/food.dart';
 import 'package:shopperino/presentation/pages/cart_page/add_to_cart_controller.dart';
+import 'package:shopperino/presentation/pages/cart_page/application/cart_service.dart';
 import 'package:shopperino/presentation/pages/home_page/components/home_page_widgets.dart';
 import 'package:shopperino/router/app_router.dart';
 import 'package:shopperino/shared/extensions/build_context.dart';
@@ -22,6 +23,7 @@ class DetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    int count = ref.watch(cartItemCountProvider);
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: context.primary,
@@ -29,7 +31,7 @@ class DetailPage extends ConsumerWidget {
             ref.read(addToCartControllerProvider.notifier).addItem(food.foodId);
             print('added ${food.foodId}');
           },
-          icon: Icon(Icons.shopping_bag_outlined),
+          icon: Text(count.toString()),
           label: CircleAvatar(
             backgroundColor: AppColors.white,
             child: Text('99'),
@@ -157,6 +159,7 @@ class DetailPage extends ConsumerWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(food.about, style: context.textTheme.bodyMedium),
                       ),
+                      // Text('$count'),
                       IconButton(onPressed: () => context.pushNamed(Routes.cart.name), icon: Icon(Icons.shopping_bag)),
                     ],
                   ),

@@ -6,14 +6,18 @@ part of 'cart_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$shoppingCartScreenControllerHash() => r'd8acdccb7fcca8f00f89e2b75d953734dab08663';
+String _$shoppingCartScreenControllerHash() =>
+    r'd8acdccb7fcca8f00f89e2b75d953734dab08663';
 
-/// See also [CartScreenController].
-@ProviderFor(CartScreenController)
-final shoppingCartScreenControllerProvider = AutoDisposeAsyncNotifierProvider<CartScreenController, void>.internal(
-  CartScreenController.new,
+/// See also [ShoppingCartScreenController].
+@ProviderFor(ShoppingCartScreenController)
+final shoppingCartScreenControllerProvider = AutoDisposeAsyncNotifierProvider<
+    ShoppingCartScreenController, void>.internal(
+  ShoppingCartScreenController.new,
   name: r'shoppingCartScreenControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$shoppingCartScreenControllerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$shoppingCartScreenControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

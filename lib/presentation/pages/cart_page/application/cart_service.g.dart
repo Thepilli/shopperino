@@ -34,7 +34,7 @@ final cartProvider = StreamProvider<Cart>.internal(
 );
 
 typedef CartRef = StreamProviderRef<Cart>;
-String _$cartItemCountHash() => r'e45f051698ff1d8d5cc83a68667d52163061d34c';
+String _$cartItemCountHash() => r'9811ff3dd1c48fda83f9efe488f6130381f86e76';
 
 /// See also [cartItemCount].
 @ProviderFor(cartItemCount)

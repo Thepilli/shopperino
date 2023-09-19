@@ -10,22 +10,23 @@ part 'cart_service.g.dart';
 class CartService {
   CartService(this.ref);
   final Ref ref;
+  Cart userCart = const Cart({}); // Initialize cart here
 
   /// fetch the cart from the local repository
-  Future<Cart> _fetchCart() {
+  Cart _fetchCart() {
     print('called _fetchCart in SERVICE');
-    return ref.read(cartRepositoryProvider).fetchCart();
+    return userCart;
   }
 
   /// save the cart to the local repository
   Future<void> _setCart(Cart cart) async {
-    await ref.read(cartRepositoryProvider).setCart(cart);
+    userCart = cart;
     print('called _setCart in SERVICE');
   }
 
   /// sets an item in the local cart
   Future<void> setItem(Item item) async {
-    final cart = await _fetchCart();
+    final cart = _fetchCart();
     final updated = cart.setItem(item);
     await _setCart(updated);
     print('called setItem in SERVICE');
@@ -33,7 +34,7 @@ class CartService {
 
   /// adds an item in the local cart
   Future<void> addItem(Item item) async {
-    final cart = await _fetchCart();
+    final cart = _fetchCart();
     final updated = cart.addItem(item);
     await _setCart(updated);
     print('called addItem in SERVICE');
@@ -41,7 +42,7 @@ class CartService {
 
   /// removes an item from the local cart
   Future<void> removeItemById(String foodID) async {
-    final cart = await _fetchCart();
+    final cart = _fetchCart();
     final updated = cart.removeItemById(foodID);
     await _setCart(updated);
     print('called removeItemById in SERVICE');
@@ -60,8 +61,5 @@ Stream<Cart> cart(CartRef ref) {
 
 @riverpod
 int cartItemCount(CartItemCountRef ref) {
-  return ref.watch(cartProvider).maybeMap(
-        data: (cart) => cart.value.items.length,
-        orElse: () => 0,
-      );
+  return ref.watch(cartServiceProvider).userCart.items.length;
 }
